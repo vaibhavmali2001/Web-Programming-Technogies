@@ -1,0 +1,65 @@
+<html>
+    <head>
+        <title>Array</title>    
+        <script>
+            
+
+            var arr =[1,2,3,4,5,6]
+function check()
+{
+    
+    let a = document.getElementById("t1").value
+    for(let i = 0;i<arr.length;i++)
+    {
+        if(a==arr[i])
+        {
+            document.getElementById("p1").innerText="The number is found"
+            break;
+        }
+        else{
+            document.getElementById("p1").innerText="The number is not found"
+        }
+    }
+}
+
+function append()
+{
+    let a = document.getElementById("t1").value
+    arr.push(a)
+    document.getElementById("p1").innerText=`[${arr}]`
+
+}
+
+
+function insert(){
+    let a = document.getElementById("t1").value
+    for(let i = 0;i<arr.length;i++)
+    {
+        if(a<arr.length && a==i)
+        {
+            arr.insert(i,a)
+            document.getElementById("p2").innerText=`[${arr}]`
+            break;
+
+        }
+        else
+        {
+            
+            document.getElementById("p1").innerText="Exceeds the index"
+        }
+    }
+    
+}
+        </script>
+    </head>
+    <body>
+        <pre>
+        <input type="number" id="t1">
+        <button id="b1" onclick="check()">Check Value</button>
+        <button id="b2" onclick="append()">Add to End</button>
+        <button id="b3" onclick="insert()">Insert at index</button>
+        <p id="p1"></p>
+        <p id="p2"></p>
+    </pre>
+    </body>
+</html>
