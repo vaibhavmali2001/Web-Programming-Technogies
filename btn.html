@@ -1,0 +1,26 @@
+<html>
+    <script>
+            function f1(){
+                let e1=document.getElementById("s1")
+                let v=e1.value
+                document.getElementById("a1").innerText=v.toUpperCase()
+            }
+            function f2(){
+                let e1=document.getElementById("s1")
+                let v=e1.value
+                document.getElementById("a1").innerText=v.toLowerCase()
+            }
+            function f3(){
+                let e1=document.getElementById("s1")
+                let v=e1.value
+                document.getElementById("a1").innerText=v.substring(0,1).toUpperCase().concat(document.getElementById("a1").innerText=v.substring(1).toLowerCase())
+            }
+    </script>
+    <body>
+        <input type="text" value="" placeholder="Enter The text" id="s1">
+        <p id="a1"></p>
+        <button onclick="f1()">Upper</button>
+        <button onclick="f2()">Lower</button>
+        <button onclick="f3()">Title</button>
+    </body>
+</html>
