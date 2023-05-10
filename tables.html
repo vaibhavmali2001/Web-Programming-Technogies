@@ -1,0 +1,30 @@
+<html>
+
+<head>
+  
+    <title>Tables</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <script>
+        $(document).ready(()=>{
+      $("#b1").click(()=>{
+        let num = $("#i1").val()
+        let from = $("#i2").val()
+        let to = $("#i3").val()
+        
+    for(let i = from; i <= to; i++)
+    {
+        let out = `<tr><td>${num} * ${i}</td><td>${num * i}</td></tr>`
+        $("#t1").append(out)
+    }
+})
+})
+    </script>
+</head>
+<body>
+    <label for="i1">Number</label><input type="number" id="i1">
+    <label for="i2">From</label><input type="number" id="i2">
+    <label for="i3">To</label><input type="number" id="i3">
+    <button id="b1">Ok</button>
+    <table id="t1" border="2px"></table>
+</body>
+</html>
