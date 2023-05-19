@@ -1,74 +1,57 @@
-import express from 'express';
+import express,{json} from 'express';
+import guestrouter from './guestrouter.js';
+import productrouter from './productrouter.js';
+
 
 let app = express()
 
 app.get('/', (request, response) => {
-    return response.send('HI From SERVER ');
+    return response.send('HII ');
   });
   
+
 app.get("/kyaboltatu",(req,res)=>{
     return res.send("Lai bhari")
 })
 
-app.post("/postit",(req,res)=>{
-    res.send("POST method received your request")
-})
 
-app.put("/putit",(req,res)=>{
-  res.send("PUT method received your request")
-})
+app.get('/login',(req,res)=>{
+  let nme = req.query.name
+  let pass = req.query.password
 
-app.delete("/delit",(req,res)=>{
-  res.send("DELETE method received your request")
-})
-
-app.post("/login",(req,res)=>{
-      let user = req.query.uname
-      let pwd = req.query.password
-
-      if(user == "iet" && pwd == "123")
-        res.send(`welcome ${user}`)
-      else
-        res.send("wrong credentials")
-
-})
-
-
-app.get("/factorial/:num",(req,res)=>{
-  console.log("the factorial is called")
-  let n = req.params.num
-  let fact=1
-  for(var i=2;i<=n;i++)
+  if(nme=="iet" && pass=='vaibhav@123')
   {
-     fact = fact * i
+    res.send(`welcome ${nme}`)
   }
-  res.send(`the factorial of ${n} is ${fact}`)
-
+  else{
+    res.send("wrong")
+  }
 })
-
-app.use(express.json())
-app.delete("/should_we_throw",(req,res)=>{
-    let pname= req.body.productName
-    let datestr = req.body.dateOfExpiry
-
-    let d = new Date(datestr)
-    let today = new Date()
-
-    if(today > d)
-        res.send(`throw ${pname} , already expired`)
-    else  
-       res.send(`you can use ${pname} `)
-
-
-
-
-
-
-})
-
-
 
   
 app.listen(5000, () => {
     console.log('App is listening on port 5000');
   });
+
+app.use(json())
+  app.use('/atithi',guestrouter)
+  app.use('/product',productrouter)
+
+
+
+  app.set('Views','/Views')
+  app.set('view engine','hbs')
+
+  app.get('/ajax',(req,res)=>{
+    res.render('textview')
+  })
+
+  app.get('/message',(req,res)=>{
+    res.send({message:"Hello Public",sender:"Vaibhav"})
+  })
+
+  app.post('/square',(req,res)=>{
+    let a = req.body.num
+    let sqr = a * a
+    res.send({sqr:sqr})
+  })
